@@ -36,7 +36,7 @@ public class DeteksiKendaraan
         //countMaxAi();
         //countAV();
         //countEV();
-        countDV();
+        //countDV();
         //countHCR();
         //countSR();
         //countVCR();
@@ -44,8 +44,13 @@ public class DeteksiKendaraan
 
     public static int num() throws Exception
     {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3308/trajectorybdg?"";
+        String username = "root";
+        String password = "";
+
+        Class.forName(driver);
+        Connection connect = DriverManager.getConnection(url + "user=" + username + "&password=" + password);
 
         Statement statement = connect.createStatement();
         ResultSet resultSet = statement.executeQuery("select * from gpsp");
