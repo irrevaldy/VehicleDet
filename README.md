@@ -14,9 +14,9 @@ For mac:
 
 To run the app via mac terminal: 
 1. Compile the DeteksiKendaraan.java class with Point.java class library
-   Example: javac DeteksiKendaraan.java Point.java
+   **javac DeteksiKendaraan.java Point.java**
 2. Run the java class with the MySQL connector you have downloaded before
-    java -cp /Users/aido/Downloads/mysql-connector-j-8.1.0/mysql-connector-j-8.1.0.jar:.: DeteksiKendaraan
+   **java -cp /Users/Downloads/mysql-connector-j-8.1.0/mysql-connector-j-8.1.0.jar:.: DeteksiKendaraan**
 
 
 
