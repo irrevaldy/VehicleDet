@@ -45,7 +45,7 @@ public class DeteksiKendaraan
     public static int num() throws Exception
     {
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3308/trajectorybdg?"";
+        String url = "jdbc:mysql://localhost:3308/trajectorybdg?";
         String username = "root";
         String password = "";
 
