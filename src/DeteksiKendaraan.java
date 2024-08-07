@@ -9,37 +9,44 @@ public class DeteksiKendaraan
 {
     public static void main(String[] args) throws ClassNotFoundException, Exception
     {
-        String db       = "trajectorybdg";
-        System.out.println("Connected to database : " + db);
-
-        int totalrow = num();
-        //System.out.println(totalrow);
-        countHeadingAngle(totalrow);
-        //countSpatialDistance(totalrow);
-        //countTemporalInterval(totalrow);
-        //countVelocity(totalrow);
-        //countAcceleration(totalrow);
-        //countHeadingChange(totalrow);
-        //countMeanVelocity(totalrow);
-        //countExpectationVelocity(totalrow);
-        //System.out.println(UpperBoundVelocity());
-        //System.out.println(UpperBoundAcceleration());
-        //pointsType(totalrow);
-        //Segmentation(totalrow);
-        //Segmentation2();
-        //SegmentationNumbering(totalrow);
-        //SubSegmentID();
-        //SegmentStatus();
-        //StartEndSegment();
-        //countSegmentDist();
-        //countMaxVi();
-        //countMaxAi();
-        //countAV();
-        //countEV();
-        //countDV();
-        //countHCR();
-        //countSR();
-        //countVCR();
+        try {
+            System.out.println("Starting application...");
+            String db       = "trajectorybdg";
+            System.out.println("Connected to database : " + db);
+    
+            int totalrow = num();
+            //System.out.println(totalrow);
+            countHeadingAngle(totalrow);
+            //countSpatialDistance(totalrow);
+            //countTemporalInterval(totalrow);
+            //countVelocity(totalrow);
+            //countAcceleration(totalrow);
+            //countHeadingChange(totalrow);
+            //countMeanVelocity(totalrow);
+            //countExpectationVelocity(totalrow);
+            //System.out.println(UpperBoundVelocity());
+            //System.out.println(UpperBoundAcceleration());
+            //pointsType(totalrow);
+            //Segmentation(totalrow);
+            //Segmentation2();
+            //SegmentationNumbering(totalrow);
+            //SubSegmentID();
+            //SegmentStatus();
+            //StartEndSegment();
+            //countSegmentDist();
+            //countMaxVi();
+            //countMaxAi();
+            //countAV();
+            //countEV();
+            //countDV();
+            //countHCR();
+            //countSR();
+            //countVCR();
+            System.out.println("Application finished.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       
     }
 
     public static int num() throws Exception

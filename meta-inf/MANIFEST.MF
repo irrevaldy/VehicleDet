@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: DeteksiKendaraan
+Created-By: 11.0.23 (Homebrew)
+
