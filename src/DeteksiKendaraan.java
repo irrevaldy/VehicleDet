@@ -13,8 +13,8 @@ public class DeteksiKendaraan
         System.out.println("Connected to database : " + db);
 
         int totalrow = num();
-        System.out.println(totalrow);
-        //countHeadingAngle(totalrow);
+        //System.out.println(totalrow);
+        countHeadingAngle(totalrow);
         //countSpatialDistance(totalrow);
         //countTemporalInterval(totalrow);
         //countVelocity(totalrow);
@@ -45,7 +45,7 @@ public class DeteksiKendaraan
     public static int num() throws Exception
     {
         String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3308/trajectorybdg?";
+        String url = "jdbc:mysql://localhost:3306/trajectorybdg?";
         String username = "root";
         String password = "";
 
@@ -68,7 +68,7 @@ public class DeteksiKendaraan
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
             Statement statement = connect.createStatement();
 
@@ -95,7 +95,7 @@ public class DeteksiKendaraan
         try
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
             Statement statement = connect.createStatement();
 
@@ -119,7 +119,7 @@ public class DeteksiKendaraan
     public static void countHeadingAngle(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -190,7 +190,7 @@ public class DeteksiKendaraan
     public static void countSpatialDistance(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -272,7 +272,7 @@ public class DeteksiKendaraan
     public static void countTemporalInterval(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -354,7 +354,7 @@ public class DeteksiKendaraan
     public static void countVelocity(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -407,7 +407,7 @@ public class DeteksiKendaraan
     public static void countAcceleration(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -464,7 +464,7 @@ public class DeteksiKendaraan
     public static void countMeanVelocity(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -534,7 +534,7 @@ public class DeteksiKendaraan
     public static void countExpectationVelocity(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -587,7 +587,7 @@ public class DeteksiKendaraan
     public static void countHeadingChange(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -640,7 +640,7 @@ public class DeteksiKendaraan
     public static double UpperBoundVelocity(String type) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -656,7 +656,7 @@ public class DeteksiKendaraan
     public static double UpperBoundVelocity() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -672,7 +672,7 @@ public class DeteksiKendaraan
     public static double UpperBoundAcceleration(String type) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -688,7 +688,7 @@ public class DeteksiKendaraan
     public static double UpperBoundAcceleration() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -704,7 +704,7 @@ public class DeteksiKendaraan
     public static void pointsType(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -747,7 +747,7 @@ public class DeteksiKendaraan
     {
 
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -779,7 +779,7 @@ public class DeteksiKendaraan
     public static void Segmentation2() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -826,7 +826,7 @@ public class DeteksiKendaraan
     public static void SegmentationNumbering(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -893,7 +893,7 @@ public class DeteksiKendaraan
     public static void SubSegmentID() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -941,7 +941,7 @@ public class DeteksiKendaraan
     {
         //Step 3
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -991,7 +991,7 @@ public class DeteksiKendaraan
     {
         //Step 4
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1038,7 +1038,7 @@ public class DeteksiKendaraan
     public static void countSegmentDist() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1080,7 +1080,7 @@ public class DeteksiKendaraan
     public static void countMaxVi() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1122,7 +1122,7 @@ public class DeteksiKendaraan
     public static void countMaxAi() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1164,7 +1164,7 @@ public class DeteksiKendaraan
     public static void countAV() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1220,7 +1220,7 @@ public class DeteksiKendaraan
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection connect;
-        connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1270,7 +1270,7 @@ public class DeteksiKendaraan
     public static void countDV() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1329,7 +1329,7 @@ public class DeteksiKendaraan
     public static void countHCR() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1392,7 +1392,7 @@ public class DeteksiKendaraan
     public static void countSR() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 
@@ -1455,7 +1455,7 @@ public class DeteksiKendaraan
     public static void countVCR() throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3308/trajectorybdg?" + "user=root&password=");
+        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
 
         Statement statement = connect.createStatement();
 

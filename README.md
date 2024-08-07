@@ -3,7 +3,8 @@
 This repository contains java application to infer transportation mode and potential traffic congestion area. For more information about this project you can download the paper here:
 https://ieeexplore.ieee.org/document/8285857
 
-It uses mySQL as the database.
+It uses mySQL as the database. Install mySQL first and after that you need to set up database connection.
+Create database called "trajectorybdg" and inside of it create table called "gpsp".
 
 To run the project you need to install mySQL JDBC connector or MySQL Connector/J you can find it here:
 https://downloads.mysql.com/archives/c-j/
