@@ -19,7 +19,7 @@ To run the app via mac terminal:
 2. Run the java class with the MySQL connector you have downloaded before
    **java -cp /Users/Downloads/mysql-connector-j-8.1.0/mysql-connector-j-8.1.0.jar:.: DeteksiKendaraan**
 
-
+To run directly using jar file, use the DeteksiKendaraan-fat.jar file.
 
 
 
