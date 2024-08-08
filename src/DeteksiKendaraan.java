@@ -1,52 +1,127 @@
-//package deteksikendaraan
+//package deteksikendaraan;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.Date;
 
-public class DeteksiKendaraan
-{
-    public static void main(String[] args) throws ClassNotFoundException, Exception
-    {
+public class DeteksiKendaraan extends JFrame {
+
+    private JTextArea textArea;
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new DeteksiKendaraan().setVisible(true);
+            }
+        });
+    }
+
+    public DeteksiKendaraan() {
+        setTitle("Deteksi Kendaraan");
+        setSize(600, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        textArea = new JTextArea();
+        textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        JButton okButton = new JButton("OK");
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Thread(new Runnable() {
+                    public void run() {
+                        try {
+                            runMainFunction();
+                        } catch (Exception ex) {
+                            Logger.getLogger(DeteksiKendaraan.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                }).start();
+            }
+        });
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.add(scrollPane, BorderLayout.CENTER);
+        panel.add(okButton, BorderLayout.SOUTH);
+        add(panel);
+
+        // Redirect System.out to textArea
+        PrintStream printStream = new PrintStream(new TextAreaOutputStream(textArea));
+        System.setOut(printStream);
+        System.setErr(printStream);
+    }
+
+    class TextAreaOutputStream extends OutputStream {
+        private final JTextArea textArea;
+
+        public TextAreaOutputStream(JTextArea textArea) {
+            this.textArea = textArea;
+        }
+
+        @Override
+        public void write(int b) {
+            textArea.append(String.valueOf((char) b));
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+        }
+
+        @Override
+        public void write(byte[] b, int off, int len) {
+            textArea.append(new String(b, off, len));
+            textArea.setCaretPosition(textArea.getDocument().getLength());
+        }
+    }
+
+    public void runMainFunction() throws Exception {
         try {
             System.out.println("Starting application...");
-            String db       = "trajectorybdg";
+            String db = "trajectorybdg";
             System.out.println("Connected to database : " + db);
-    
+
             int totalrow = num();
-            //System.out.println(totalrow);
+            // System.out.println(totalrow);
             countHeadingAngle(totalrow);
-            //countSpatialDistance(totalrow);
-            //countTemporalInterval(totalrow);
-            //countVelocity(totalrow);
-            //countAcceleration(totalrow);
-            //countHeadingChange(totalrow);
-            //countMeanVelocity(totalrow);
-            //countExpectationVelocity(totalrow);
-            //System.out.println(UpperBoundVelocity());
-            //System.out.println(UpperBoundAcceleration());
-            //pointsType(totalrow);
-            //Segmentation(totalrow);
-            //Segmentation2();
-            //SegmentationNumbering(totalrow);
-            //SubSegmentID();
-            //SegmentStatus();
-            //StartEndSegment();
-            //countSegmentDist();
-            //countMaxVi();
-            //countMaxAi();
-            //countAV();
-            //countEV();
-            //countDV();
-            //countHCR();
-            //countSR();
-            //countVCR();
+            // countSpatialDistance(totalrow);
+            // countTemporalInterval(totalrow);
+            // countVelocity(totalrow);
+            // countAcceleration(totalrow);
+            // countHeadingChange(totalrow);
+            // countMeanVelocity(totalrow);
+            // countExpectationVelocity(totalrow);
+            // System.out.println(UpperBoundVelocity());
+            // System.out.println(UpperBoundAcceleration());
+            // pointsType(totalrow);
+            // Segmentation(totalrow);
+            // Segmentation2();
+            // SegmentationNumbering(totalrow);
+            // SubSegmentID();
+            // SegmentStatus();
+            // StartEndSegment();
+            // countSegmentDist();
+            // countMaxVi();
+            // countMaxAi();
+            // countAV();
+            // countEV();
+            // countDV();
+            // countHCR();
+            // countSR();
+            // countVCR();
             System.out.println("Application finished.");
         } catch (Exception e) {
             e.printStackTrace();
         }
-       
     }
 
     public static int num() throws Exception
