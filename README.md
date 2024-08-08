@@ -24,24 +24,32 @@ How to create the JAR file:
 2. Create /out folder in VehicleDet for output class file
 3. Compile the DeteksiKendaraan.java class with Point.java class library, put it in out folder 
    **javac -d out src/Point.java src/DeteksiKendaraan.java**
-4. Run this on terminal:
+4. Create DeteksiKendaraan JAR file
+   **jar cvfm DeteksiKendaraan.jar META-INF/MANIFEST.MF -C out .**
+5. Run this on terminal:
   ``` mkdir app-jar
    mkdir jdbc-jar
    cd app-jar
    jar xf ../DeteksiKendaraan.jar
-   cd ../jdbc-j
-   jar xf ../mysql-connector-java-8.0.xx.jar
+   cd ../jdbc-jar
+   jar xf ../mysql-connector-j-8.1.0.jar
   ```
-5. Copy the contents of the JDBC JAR into the directory containing your application JAR: **cp -r jdbc-jar/\* app-jar/**
-6. Create a new jar file from combined content
-   **cd app-jar**
-   **jar cf ../DeteksiKendaraan-fat.jar**
-7. Add manifest information
+6. Copy the contents of the JDBC JAR into the directory containing your application JAR: 
+   ```
+   cd ..
+   cp -r jdbc-jar/* app-jar/
+   ```
+7. Create a new jar file from combined content
+   ```cd app-jar
+   jar cf ../DeteksiKendaraan-fat.jar *
+   ```
+8. Add manifest information
+   **cd ..**
    **echo "Main-Class: DeteksiKendaraan" > MANIFEST.MF**
    **jar ufm DeteksiKendaraan-fat.jar MANIFEST.MF**
-8. Verify the JAR File (Make sure Jar file contains all your programs and needed drivers)
+9. Verify the JAR File (Make sure Jar file contains all your programs and needed drivers)
    **jar tf DeteksiKendaraan-fat.jar**
-9. Run the fat JAR file
+10. Run the fat JAR file
    **java -jar DeteksiKendaraan-fat.jar**
 
 To run directly using JAR file, use the DeteksiKendaraan-fat.jar file.

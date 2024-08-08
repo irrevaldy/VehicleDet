@@ -2,8 +2,6 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.sql.*;
@@ -16,13 +14,10 @@ import java.util.Date;
 public class DeteksiKendaraan extends JFrame {
 
     private JTextArea textArea;
+    volatile boolean stopRequested = false; // Flag for cancelation
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new DeteksiKendaraan().setVisible(true);
-            }
-        });
+        SwingUtilities.invokeLater(() -> new DeteksiKendaraan().setVisible(true));
     }
 
     public DeteksiKendaraan() {
@@ -37,31 +32,39 @@ public class DeteksiKendaraan extends JFrame {
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         JButton okButton = new JButton("OK");
-        okButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Thread(new Runnable() {
-                    public void run() {
-                        try {
-                            runMainFunction();
-                        } catch (Exception ex) {
-                            Logger.getLogger(DeteksiKendaraan.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }).start();
-            }
+        JButton cancelButton = new JButton("Cancel");
+
+        okButton.addActionListener(e -> startProcess());
+
+        cancelButton.addActionListener(e -> {
+            stopRequested = true;
         });
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(okButton);
+        buttonPanel.add(cancelButton);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
         panel.add(scrollPane, BorderLayout.CENTER);
-        panel.add(okButton, BorderLayout.SOUTH);
+        panel.add(buttonPanel, BorderLayout.SOUTH);
         add(panel);
 
         // Redirect System.out to textArea
         PrintStream printStream = new PrintStream(new TextAreaOutputStream(textArea));
         System.setOut(printStream);
         System.setErr(printStream);
+    }
+
+    private void startProcess() {
+        stopRequested = false; // Reset the cancel flag
+        new Thread(() -> {
+            try {
+                runMainFunction();
+            } catch (Exception ex) {
+                Logger.getLogger(DeteksiKendaraan.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }).start();
     }
 
     class TextAreaOutputStream extends OutputStream {
@@ -87,6 +90,7 @@ public class DeteksiKendaraan extends JFrame {
     public void runMainFunction() throws Exception {
         try {
             System.out.println("Starting application...");
+
             String db = "trajectorybdg";
             System.out.println("Connected to database : " + db);
 
@@ -123,6 +127,8 @@ public class DeteksiKendaraan extends JFrame {
             e.printStackTrace();
         }
     }
+
+
 
     public static int num() throws Exception
     {
@@ -198,77 +204,82 @@ public class DeteksiKendaraan extends JFrame {
         }
     }
 
-    public static void countHeadingAngle(int totalrow) throws ClassNotFoundException, SQLException
-    {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/trajectorybdg?" + "user=root&password=");
+    public void countHeadingAngle(int totalrow) throws ClassNotFoundException, SQLException {
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/trajectorybdg?";
+        String username = "root";
+        String password = "";
 
-        Statement statement = connect.createStatement();
+        Class.forName(driver);
+        try (Connection connect = DriverManager.getConnection(url + "user=" + username + "&password=" + password)) {
+            Statement statement = connect.createStatement();
 
-        double headingangle;
-        double ptql = 0;
-        double ptqlo = 0;
-        String type = "";
-        String rowname = "headingangle";
+            double headingangle;
+            double ptql = 0;
+            double ptqlo = 0;
+            String type = "";
+            String rowname = "headingangle";
 
-        for(int i=1; i <= totalrow; i++)
-        {
-            ResultSet ch = statement.executeQuery("select trip from gpsp where no=" + i);
-            ch.next();
-            int chTrip = ch.getInt(1);
-            int chTrip1;
-            if( i < totalrow)
-            {
-                ResultSet ch1 = statement.executeQuery("select trip from gpsp where no=" + (i+1));
-                ch1.next();
-                chTrip1 = ch1.getInt(1);
+            for (int i = 1; i <= totalrow; i++) {
+                if (stopRequested) {
+                    System.out.println("Process canceled at row: " + i);
+                    return; // Exits the method entirely
+                }
+
+                ResultSet ch = statement.executeQuery("SELECT trip FROM gpsp WHERE no=" + i);
+                ch.next();
+                int chTrip = ch.getInt(1);
+                int chTrip1;
+
+                if (i < totalrow) {
+                    ResultSet ch1 = statement.executeQuery("SELECT trip FROM gpsp WHERE no=" + (i + 1));
+                    ch1.next();
+                    chTrip1 = ch1.getInt(1);
+                } else {
+                    chTrip1 = chTrip;
+                }
+
+                if (chTrip == chTrip1 && i < totalrow) {
+                    ResultSet rs = statement.executeQuery("SELECT latitude FROM gpsp WHERE no=" + i);
+                    rs.next();
+                    double latitude = rs.getDouble(1);
+                    ResultSet rs1 = statement.executeQuery("SELECT longitude FROM gpsp WHERE no=" + i);
+                    rs1.next();
+                    double longitude = rs1.getDouble(1);
+                    ResultSet rs2 = statement.executeQuery("SELECT latitude FROM gpsp WHERE no=" + (i + 1));
+                    rs2.next();
+                    double latitude1 = rs2.getDouble(1);
+                    ResultSet rs3 = statement.executeQuery("SELECT longitude FROM gpsp WHERE no=" + (i + 1));
+                    rs3.next();
+                    double longitude1 = rs3.getDouble(1);
+                    ResultSet rs4 = statement.executeQuery("SELECT type FROM gpsp WHERE no=" + (i + 1));
+                    rs4.next();
+                    type = rs4.getString(1);
+
+                    Point q = new Point(latitude, longitude);
+                    Point r = new Point(latitude1, longitude1);
+
+                    ptql = q.getl();
+                    ptqlo = q.getlo();
+                    headingangle = q.getAngle(r);
+                } else {
+                    headingangle = 0;
+                }
+
+                updateRow(i, rowname, headingangle);
+                System.out.print(i + " ");
+                System.out.print(chTrip + " ");
+                System.out.print(chTrip1 + " ");
+                System.out.print(ptql + " ");
+                System.out.print(ptqlo + " ");
+                System.out.print(chTrip1 + " ");
+                System.out.print(chTrip1 + " ");
+                System.out.print(headingangle + " ");
+                System.out.println(type);
             }
-            else
-            {
-                chTrip1 = chTrip;
-            }
-            if(chTrip == chTrip1 && i < totalrow)
-            {
-                ResultSet rs = statement.executeQuery("select latitude from gpsp where no=" + i);
-                rs.next();
-                double latitude = rs.getDouble(1);
-                ResultSet rs1 = statement.executeQuery("select longitude from gpsp where no=" + i);
-                rs1.next();
-                double longitude = rs1.getDouble(1);
-                ResultSet rs2 = statement.executeQuery("select latitude from gpsp where no=" + (i+1));
-                rs2.next();
-                double latitude1 = rs2.getDouble(1);
-                ResultSet rs3 = statement.executeQuery("select longitude from gpsp where no=" + (i+1));
-                rs3.next();
-                double longitude1 = rs3.getDouble(1);
-                ResultSet rs4 = statement.executeQuery("select type from gpsp where no=" + (i+1));
-                rs4.next();
-                type = rs4.getString(1);
-
-                Point q = new Point(latitude, longitude);
-                Point r = new Point(latitude1, longitude1);
-
-                ptql = q.getl();
-                ptqlo = q.getlo();
-                headingangle = q.getAngle(r);
-            }
-            else
-            {
-                headingangle = 0;
-            }
-            updateRow(i, rowname, headingangle);
-            System.out.print(i + " ");
-            System.out.print(chTrip + " ");
-            System.out.print(chTrip1 + " ");
-            System.out.print(ptql + " ");
-            System.out.print(ptqlo + " ");
-            System.out.print(chTrip1 + " ");
-            System.out.print(chTrip1 + " ");
-            System.out.print(headingangle + " ");
-            System.out.println(type);
         }
     }
-
+    
     public static void countSpatialDistance(int totalrow) throws ClassNotFoundException, SQLException
     {
         Class.forName("com.mysql.cj.jdbc.Driver");
