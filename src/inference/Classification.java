@@ -10,7 +10,6 @@
  *  
  */
 
-package deteksikendaraan.inference;
 import weka.core.Instances;
 import weka.core.converters.ConverterUtils.DataSource;
 

@@ -9,8 +9,6 @@
  *  and my YouTube Channel!
  *  
  */
-package deteksikendaraan.inference;
-
 //import required classes
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;

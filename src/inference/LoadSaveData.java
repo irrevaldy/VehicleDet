@@ -9,15 +9,12 @@
  *  and my YouTube Channel!
  *  
  */
-
-package deteksikendaraan.inference;
-
 import weka.core.Instances;
 import weka.core.converters.ArffSaver;
 
 //import java.io.BufferedReader;
 import java.io.File;
-//import java.io.FileReader;
+//import java.io.FileReader;pipx
 
 import weka.core.converters.ConverterUtils.DataSource;
 

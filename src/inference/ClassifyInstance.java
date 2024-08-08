@@ -10,7 +10,6 @@
  *  
  */
 
-package deteksikendaraan.inference;
 //import required classes
 import weka.core.Instance;
 import weka.core.Instances;

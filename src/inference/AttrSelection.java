@@ -9,8 +9,6 @@
  *  and my YouTube Channel!
  *  
  */
-package deteksikendaraan.inference;
-//import required classes
 import weka.attributeSelection.CfsSubsetEval;
 import weka.attributeSelection.GreedyStepwise;
 import weka.core.Instances;
