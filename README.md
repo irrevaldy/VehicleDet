@@ -25,13 +25,14 @@ How to create the JAR file:
 3. Compile the DeteksiKendaraan.java class with Point.java class library, put it in out folder 
    **javac -d out src/Point.java src/DeteksiKendaraan.java**
 4. Run this on terminal:
-   mkdir app-jar
+  ``` mkdir app-jar
    mkdir jdbc-jar
    cd app-jar
    jar xf ../DeteksiKendaraan.jar
-   cd ../jdbc-jar
+   cd ../jdbc-j
    jar xf ../mysql-connector-java-8.0.xx.jar
-5. Copy the contents of the JDBC JAR into the directory containing your application JAR: **cp -r jdbc-jar/* app-jar/**
+  ```
+5. Copy the contents of the JDBC JAR into the directory containing your application JAR: **cp -r jdbc-jar/\* app-jar/**
 6. Create a new jar file from combined content
    **cd app-jar**
    **jar cf ../DeteksiKendaraan-fat.jar**
