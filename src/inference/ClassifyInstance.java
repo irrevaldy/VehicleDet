@@ -30,7 +30,7 @@ public class ClassifyInstance{
         Statement statement = connect.createStatement();
 		
 		//load training dataset
-		DataSource source = new DataSource("data/trainingset1.arff");
+		DataSource source = new DataSource("../../data/trainingset1.arff");
 		Instances trainDataset = source.getDataSet();	
 		
 		//set class index to the last attribute

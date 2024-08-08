@@ -21,7 +21,7 @@ import weka.classifiers.trees.J48;
 public class Classification{
 	public static void main(String args[]) throws Exception{
 		//load dataset
-		DataSource source = new DataSource("data/trainingset1.arff");
+		DataSource source = new DataSource("../../data/trainingset1.arff");
 		Instances dataset = source.getDataSet();	
 		//set class index to the last attribute
 		dataset.setClassIndex(dataset.numAttributes()-1);

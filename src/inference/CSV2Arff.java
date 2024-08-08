@@ -24,7 +24,7 @@ public class CSV2Arff
 	 
     // load CSV
     CSVLoader loader = new CSVLoader();
-    loader.setSource(new File("D:/Kuliah S2/Semester 4/Tesis Extend/Implementasi Tesis/DeteksiKendaraan/data/masterfrommysql.csv"));
+    loader.setSource(new File("../../data/masterfrommysql.csv"));
     Instances data = loader.getDataSet();//get instances object
 
     // save ARFF

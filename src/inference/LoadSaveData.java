@@ -20,7 +20,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 
 public class LoadSaveData{
 	public static void main(String args[]) throws Exception{
-		DataSource source = new DataSource("c://Users/Irrevaldy/Desktop/training.arff");
+		DataSource source = new DataSource("../../data/training.arff");
 		Instances dataset = source.getDataSet();
 		//Instances dataset = new Instances(new BufferedReader(new FileReader("c://Users/Irrevaldy/Desktop/training.arff")));		
 		

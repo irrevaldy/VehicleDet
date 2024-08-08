@@ -31,8 +31,8 @@ public class DeteksiKendaraan extends JFrame {
         JScrollPane scrollPane = new JScrollPane(textArea);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-        JButton okButton = new JButton("OK");
-        JButton cancelButton = new JButton("Cancel");
+        JButton okButton = new JButton("Start");
+        JButton cancelButton = new JButton("Stop");
 
         okButton.addActionListener(e -> startProcess());
 

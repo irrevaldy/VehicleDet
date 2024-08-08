@@ -20,7 +20,7 @@ import weka.filters.unsupervised.attribute.Remove;
 public class AttributeFilter{
 	public static void main(String args[]) throws Exception{
 		//load dataset
-		DataSource source = new DataSource("data/crossvalset.arff");
+		DataSource source = new DataSource("../../data/crossvalset.arff");
 		Instances dataset = source.getDataSet();
 		
 		//use a simple filter to remove a certain attribute	

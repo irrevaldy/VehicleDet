@@ -21,7 +21,7 @@ import weka.core.converters.ConverterUtils.DataSource;
 public class AttrSelection{
 	public static void main(String args[]) throws Exception{
 		//load dataset
-		DataSource source = new DataSource("data/training1.arff");
+		DataSource source = new DataSource("../../data/training1.arff");
 		Instances dataset = source.getDataSet();
 		//create AttributeSelection object
 		AttributeSelection filter = new AttributeSelection();
